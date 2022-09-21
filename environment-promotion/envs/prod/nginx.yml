@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx
+  namespace: prod
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/jmeridth/gitops-cert-level-2-examples.git
+    targetRevision: HEAD
+    path: ./environment-promotion/envs/prod
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: prod
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true  
+    automated:
+      prune: true
+      selfHeal: true
+  
