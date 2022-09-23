@@ -12,7 +12,6 @@ spec:
       - name: dummy-message
         image: alpine
         command:
-          - "sleep"
-          - "3"
+          - "false"
       restartPolicy: Never
   backoffLimit: 2    
